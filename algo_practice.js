@@ -24,7 +24,7 @@ function findPair(arr, k) {
 
 /**
  *  Find first repeating char in a string
- * 
+ *
  *  @param {string} - String to check
  *  @returns {char} - First repeating char
  *
@@ -47,10 +47,10 @@ function firstRepeatingChar(str) {
 
 /**
  * Remove duplicates from an array
- *  
+ *
  * @param {int []} - Integer array to find a duplicate
  * @returns {int []} - Int array without duplicates
- * 
+ *
  */
 
 function removeDuplicates(arr) {
@@ -65,10 +65,10 @@ function removeDuplicates(arr) {
 
 /**
  * Find duplicate in array { assumes n+1 elements between 1 and n }
- *  
+ *
  * @param {int []} - Integer array that has duplicates
  * @returns {number} - Duplicate number
- * 
+ *
  */
 
 function findDuplicate(arr) {
@@ -89,7 +89,7 @@ function findDuplicate(arr) {
  *
  * @param {int []} - Integer array to check for max sub array
  * @returns {number} - Max Sum
- * 
+ *
  */
 
  function maximumSubarray(arr) {
@@ -97,7 +97,7 @@ function findDuplicate(arr) {
   let localMax = 0;
   for(let i of arr){
     localMax = Math.max(i, localMax + i);     //Should we take this one or current sum?
-    maximum = Math.max( maximum, localMax);   //Is this or the current max more? 
+    maximum = Math.max( maximum, localMax);   //Is this or the current max more?
   }
   return maximum;
 }
@@ -105,9 +105,9 @@ function findDuplicate(arr) {
 //console.log(maximumSubarray([2,-2,3,1,4,2,-10,2,7]));
 
 /***
- * 
+ *
  *  Reverse a BST
- * 
+ *
  *  @param {Node} - Root Node to be reversed
  */
 
@@ -118,5 +118,41 @@ function findDuplicate(arr) {
   reverseTree(root.right);
  }
 
- //No example here 
+ //No example here
  ///TODO: Add BST to be manipulated via these functions
+
+
+ /**
+ * Find longest substr without repeating chars
+ * 
+ * @param {string} - String to check for the longest substr
+ * @return {boolean} - check if str has repeating chars
+ */
+
+  function withoutRepeating(str){
+    let visited = [...Array(128)].map(x => false); // map each number (char code) to false 
+    for(let i = 0; i < str.length; i++){
+        if(visited[str.charCodeAt(i)]) return false; // return false if we find a char in the str
+        else visited[str.charCodeAt(i)] = true;
+    }
+    return true;
+}  
+
+ /**
+ * Find longest substr without repeating chars
+ * 
+ * @param {string} - String to check for the longest substr
+ * @return {number} - length of longest substr
+ */
+
+function longestSubstringWithoutRepeating(str){
+    let maxLength = 0;
+    for(let i = 0; i < str.length; i++){
+        for(let j = i; j < str.length; j++){
+            let substr = str.substring(i, j+1);
+            if(withoutRepeating(substr) && substr.length > maxLength)
+                maxLength = substr.length;
+        }
+    }
+    return maxLength;
+}
