@@ -156,3 +156,101 @@ function longestSubstringWithoutRepeating(str){
     }
     return maxLength;
 }
+
+/**
+ * Reverse a linked list
+ * 
+ * @param {list} - List to be reversed
+ * 
+ */
+
+function reverseLinkedList(list){
+  let previous = null;
+  let current = list.head;
+  
+  while(current !== null){
+    let next = current.next;
+    current.next = previous;
+    previous = current;
+    current = next
+  }
+  list.head = previous  
+}
+
+/**
+ * Find peak in arr
+ * 
+ * @param {int []} - Input array of int []
+ * @returns {number} - first peak of array
+ * 
+ */
+
+ function findPeak(arr){
+  for(let i = 0; i < arr.length; i++)
+    if((i == 0 || arr[i] >= arr[i-1]) && (i == arr.length-1 || arr[i] >= arr[i+1])) // find edge cases, too
+      return i;
+}
+
+/**
+ * Check if Linked List is palindrome
+ * 
+ * @param {list} - List to check
+ * @returns {boolean} - Whether or not the linked list is a palindrome 
+ */
+
+ class Node{
+  constructor(data, next = null){
+    this.data = data;
+    this.next = next;
+  }
+}
+
+class LinkedList{
+  constructor(head = null){
+    this.head = head;
+  }
+}
+
+function isPalindromeList(list){
+  let length = 0;
+  let temp = list.head;
+  while(temp){
+    length++;
+    temp = temp.next;
+  }
+  let left = list.head;
+  for(let i = 0; i < Math.floor(length/2); i++){
+    let right = list.head;
+    for(let j = 0; j < length-i-1; j++) right = right.next;
+    if(left.data != right.data) return false;
+    left = left.next;
+  }
+  return true;
+}
+
+
+/**
+ * Find length of longest palindrome
+ * 
+ * @param {string} - string to check
+ * @returns {int} - length of longest palindrome
+ * 
+ */
+function longestPalindrome(str){
+  let occurences = [...Array(128)].map(x=> 0);
+  for(const char of str.split("")){
+    occurences[charCodeAt(char)] ++;
+  }
+  let length = 0
+  for(const occurence of occurences){
+    if(occurence % 2 == 0){
+      length += occurence;
+    }else{
+      length += occurence -1;
+    }
+  }
+  if(length.length < str.length){
+    length ++
+  }
+  return length;
+}
