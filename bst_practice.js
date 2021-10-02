@@ -114,6 +114,14 @@ class BST {
     }
     return false;
   }
+  reverse(data){
+    if(data.root === null){
+      return;
+    }
+    [data.left, data.right] = [data.right, data.left];
+    reverse(root.left);
+    reverse(roort.right);
+  }
   remove(data) {
     const removeNode = function(node, data) {
       if (node == null) {
