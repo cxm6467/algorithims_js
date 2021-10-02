@@ -103,3 +103,20 @@ function findDuplicate(arr) {
 }
 
 //console.log(maximumSubarray([2,-2,3,1,4,2,-10,2,7]));
+
+/***
+ * 
+ *  Reverse a BST
+ * 
+ *  @param {Node} - Root Node to be reversed
+ */
+
+ function reverseTree(root){
+  if(root==null) return;
+  [root.left, root.right] = [root.right, root.left]; // use new ES6 way to swap values via deconstruction
+  reverseTree(root.left);  //Start from left, be consistent
+  reverseTree(root.right);
+ }
+
+ //No example here 
+ ///TODO: Add BST to be manipulated via these functions

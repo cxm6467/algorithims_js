@@ -114,14 +114,7 @@ class BST {
     }
     return false;
   }
-  reverse(data){
-    if(data.root === null){
-      return;
-    }
-    [data.left, data.right] = [data.right, data.left];
-    reverse(root.left);
-    reverse(roort.right);
-  }
+  
   remove(data) {
     const removeNode = function(node, data) {
       if (node == null) {
@@ -263,6 +256,3 @@ bst.add(22);
 bst.add(5);
 bst.add(7);
 bst.add(20);
-
-
-console.log(dfsPreorder(bst));
