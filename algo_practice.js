@@ -83,3 +83,23 @@ function findDuplicate(arr) {
 }
 
 //console.log(findDuplicate([1,3,2,4,1]))
+
+/**
+ * Find max sub array
+ *
+ * @param {int []} - Integer array to check for max sub array
+ * @returns {number} - Max Sum
+ * 
+ */
+
+ function maximumSubarray(arr) {
+  let maximum = -Infinity;
+  let localMax = 0;
+  for(let i of arr){
+    localMax = Math.max(i, localMax + i);     //Should we take this one or current sum?
+    maximum = Math.max( maximum, localMax);   //Is this or the current max more? 
+  }
+  return maximum;
+}
+
+//console.log(maximumSubarray([2,-2,3,1,4,2,-10,2,7]));
