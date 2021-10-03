@@ -301,3 +301,37 @@ function isBSTValid(node, min = -Infinity, max = Infinity){
     return isBSTValid(node.left, min, root.data) && isBSTValid(root.right, root.data, max)
   }
 }
+
+
+/**
+ * Get height of BST
+ * 
+ * @param {node} - gets height of Tree
+ * @returns {number} - height of tree
+ * 
+ */
+
+ function bstHeight(node){
+  if(!node){
+    return -1;
+  }else{
+    left = bstHeight(node.left);
+    right = bstHeight(node.right);
+    return (1 + Math.max(left,right));
+  }
+}
+
+/**
+ * Check if BST is balanced
+ * 
+ * @param {Tree} - Tree to check
+ * @returns {boolean} - Whether or not BST is balanced
+ * 
+ */
+
+function isBSTBlanced(node){
+  if(!node) return true;
+  let left = bstHeight(node.left);
+  let right = bstHeight(node.right);
+  return Math.abs( left - right) <=1 && isBSTBlanced(root.left) && isBSTBlanced(root.right);
+}
