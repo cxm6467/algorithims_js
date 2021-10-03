@@ -254,3 +254,23 @@ function longestPalindrome(str){
   }
   return length;
 }
+
+/**
+ * Sort Linked List
+ * 
+ * @param {LinkedList} - List to be sorted in place
+ */
+
+function sortLinkedList(list){
+  let i = list.head;
+  while(i){
+    let j = list.head;
+    while(j.next){
+      if(j.data > j.next.data){
+        [j.data, j.next.data] = [j.next.data, j.data]
+      }
+      j = j.next;
+    }
+    i = i.next;
+  }
+}
