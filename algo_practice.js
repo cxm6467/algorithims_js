@@ -92,12 +92,12 @@ function findDuplicate(arr) {
  *
  */
 
- function maximumSubarray(arr) {
+function maximumSubarray(arr) {
   let maximum = -Infinity;
   let localMax = 0;
-  for(let i of arr){
-    localMax = Math.max(i, localMax + i);     //Should we take this one or current sum?
-    maximum = Math.max( maximum, localMax);   //Is this or the current max more?
+  for (let i of arr) {
+    localMax = Math.max(i, localMax + i); //Should we take this one or current sum?
+    maximum = Math.max(maximum, localMax); //Is this or the current max more?
   }
   return maximum;
 }
@@ -111,50 +111,50 @@ function findDuplicate(arr) {
  *  @param {Node} - Root Node to be reversed
  */
 
- function reverseTree(root){
-  if(root==null) return;
+function reverseTree(root) {
+  if (root == null) return;
   [root.left, root.right] = [root.right, root.left]; // use new ES6 way to swap values via deconstruction
-  reverseTree(root.left);  //Start from left, be consistent
+  reverseTree(root.left); //Start from left, be consistent
   reverseTree(root.right);
- }
+}
 
- //No example here
- ///TODO: Add BST to be manipulated via these functions
+//No example here
+///TODO: Add BST to be manipulated via these functions
 
 
- /**
+/**
  * Find longest substr without repeating chars
  * 
  * @param {string} - String to check for the longest substr
  * @return {boolean} - check if str has repeating chars
  */
 
-  function withoutRepeating(str){
-    let visited = [...Array(128)].map(x => false); // map each number (char code) to false 
-    for(let i = 0; i < str.length; i++){
-        if(visited[str.charCodeAt(i)]) return false; // return false if we find a char in the str
-        else visited[str.charCodeAt(i)] = true;
-    }
-    return true;
-}  
+function withoutRepeating(str) {
+  let visited = [...Array(128)].map(x => false); // map each number (char code) to false 
+  for (let i = 0; i < str.length; i++) {
+    if (visited[str.charCodeAt(i)]) return false; // return false if we find a char in the str
+    else visited[str.charCodeAt(i)] = true;
+  }
+  return true;
+}
 
- /**
+/**
  * Find longest substr without repeating chars
  * 
  * @param {string} - String to check for the longest substr
  * @return {number} - length of longest substr
  */
 
-function longestSubstringWithoutRepeating(str){
-    let maxLength = 0;
-    for(let i = 0; i < str.length; i++){
-        for(let j = i; j < str.length; j++){
-            let substr = str.substring(i, j+1);
-            if(withoutRepeating(substr) && substr.length > maxLength)
-                maxLength = substr.length;
-        }
+function longestSubstringWithoutRepeating(str) {
+  let maxLength = 0;
+  for (let i = 0; i < str.length; i++) {
+    for (let j = i; j < str.length; j++) {
+      let substr = str.substring(i, j + 1);
+      if (withoutRepeating(substr) && substr.length > maxLength)
+        maxLength = substr.length;
     }
-    return maxLength;
+  }
+  return maxLength;
 }
 
 /**
@@ -164,17 +164,17 @@ function longestSubstringWithoutRepeating(str){
  * 
  */
 
-function reverseLinkedList(list){
+function reverseLinkedList(list) {
   let previous = null;
   let current = list.head;
-  
-  while(current !== null){
+
+  while (current !== null) {
     let next = current.next;
     current.next = previous;
     previous = current;
     current = next
   }
-  list.head = previous  
+  list.head = previous
 }
 
 /**
@@ -185,9 +185,9 @@ function reverseLinkedList(list){
  * 
  */
 
- function findPeak(arr){
-  for(let i = 0; i < arr.length; i++)
-    if((i == 0 || arr[i] >= arr[i-1]) && (i == arr.length-1 || arr[i] >= arr[i+1])) // find edge cases, too
+function findPeak(arr) {
+  for (let i = 0; i < arr.length; i++)
+    if ((i == 0 || arr[i] >= arr[i - 1]) && (i == arr.length - 1 || arr[i] >= arr[i + 1])) // find edge cases, too
       return i;
 }
 
@@ -198,31 +198,31 @@ function reverseLinkedList(list){
  * @returns {boolean} - Whether or not the linked list is a palindrome 
  */
 
- class Node{
-  constructor(data, next = null){
+class Node {
+  constructor(data, next = null) {
     this.data = data;
     this.next = next;
   }
 }
 
-class LinkedList{
-  constructor(head = null){
+class LinkedList {
+  constructor(head = null) {
     this.head = head;
   }
 }
 
-function isPalindromeList(list){
+function isPalindromeList(list) {
   let length = 0;
   let temp = list.head;
-  while(temp){
+  while (temp) {
     length++;
     temp = temp.next;
   }
   let left = list.head;
-  for(let i = 0; i < Math.floor(length/2); i++){
+  for (let i = 0; i < Math.floor(length / 2); i++) {
     let right = list.head;
-    for(let j = 0; j < length-i-1; j++) right = right.next;
-    if(left.data != right.data) return false;
+    for (let j = 0; j < length - i - 1; j++) right = right.next;
+    if (left.data != right.data) return false;
     left = left.next;
   }
   return true;
@@ -236,21 +236,21 @@ function isPalindromeList(list){
  * @returns {int} - length of longest palindrome
  * 
  */
-function longestPalindrome(str){
-  let occurences = [...Array(128)].map(x=> 0);
-  for(const char of str.split("")){
-    occurences[charCodeAt(char)] ++;
+function longestPalindrome(str) {
+  let occurences = [...Array(128)].map(x => 0);
+  for (const char of str.split("")) {
+    occurences[charCodeAt(char)]++;
   }
   let length = 0
-  for(const occurence of occurences){
-    if(occurence % 2 == 0){
+  for (const occurence of occurences) {
+    if (occurence % 2 == 0) {
       length += occurence;
-    }else{
-      length += occurence -1;
+    } else {
+      length += occurence - 1;
     }
   }
-  if(length.length < str.length){
-    length ++
+  if (length.length < str.length) {
+    length++
   }
   return length;
 }
@@ -261,12 +261,12 @@ function longestPalindrome(str){
  * @param {LinkedList} - List to be sorted in place
  */
 
-function sortLinkedList(list){
+function sortLinkedList(list) {
   let i = list.head;
-  while(i){
+  while (i) {
     let j = list.head;
-    while(j.next){
-      if(j.data > j.next.data){
+    while (j.next) {
+      if (j.data > j.next.data) {
         [j.data, j.next.data] = [j.next.data, j.data]
       }
       j = j.next;

@@ -335,3 +335,34 @@ function isBSTBlanced(node){
   let right = bstHeight(node.right);
   return Math.abs( left - right) <=1 && isBSTBlanced(root.left) && isBSTBlanced(root.right);
 }
+
+/**
+ * Get Level values of BST
+ * 
+ * @param {Tree} - Tree to process
+ * @returns {int[int[]]} - 2D int [] with level data
+ * 
+ */
+
+function getLevelValuesOfBST(node){
+    let output =  [];
+    let queue = [[node], 0];
+    let i = 0;
+
+    while(i< queue.length){
+      let poppedNode = queue[i][0];
+      let level = queue[i][1];
+      i++;
+      if(!poppedNode){
+        continue;
+      }else{
+        if(output.length <= level){
+          output.push([]);
+        }
+          output[level].push(node.data);
+          queue.push(node.left, level + 1);
+          queue.push(node.right, level + 1);
+        }
+      }
+    return output;
+}
