@@ -281,3 +281,23 @@ function sortBSTBreadthFirst(node){
   }
   return queue;
 }
+
+/**
+ * Check if BST is valid
+ * 
+ * @param {node} - current Node
+ * @param {minValue} - min value for node
+ * @param {maxValue} - max value for node
+ * @returns {boolean} - if node is valid
+ * 
+ */
+
+function isBSTValid(node, min = -Infinity, max = Infinity){
+  if(!node){
+    return true;
+  }else if(node.data < min || node.data >= max){
+    return false;
+  }else{
+    return isBSTValid(node.left, min, root.data) && isBSTValid(root.right, root.data, max)
+  }
+}
