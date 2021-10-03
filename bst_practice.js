@@ -256,3 +256,28 @@ bst.add(22);
 bst.add(5);
 bst.add(7);
 bst.add(20);
+
+/**
+ * Breadth first search
+ * 
+ * @param {Binary Tree Node} - BST
+ * @returns {int []} - Sorted BST by breadth
+ * 
+ */
+
+function sortBSTBreadthFirst(node){
+  let queue = [node];
+  let i = 0;
+  while( i < queue.length){
+    let poppedNode = queue[i];
+    i++
+    if(!poppedNode){
+      continue;
+    }else{
+      print(poppedNode.data)
+      queue.push(node.left)
+      queue.push(node.right)
+    }
+  }
+  return queue;
+}
